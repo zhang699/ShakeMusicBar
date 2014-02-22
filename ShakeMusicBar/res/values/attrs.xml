@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ShakeMusicBarView">
+		<attr name="barCount" format="reference|integer"></attr>
+		<attr name="barInvsInPx" format="reference|integer"></attr>
+		<attr name="barColor" format="reference|color"></attr>
+    </declare-styleable>
+
+</resources>
