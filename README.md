@@ -1,7 +1,7 @@
 ShakeMusicBar
 =============
 
-A ShakeMusicBarView which imitates from Google Play Music. The project requirement came from Jie-Chuen Li.
+A ShakeMusicBarView which imitates from Google Play Music Android APP is used to indicate the music is playing or stopped. This project requirement came from Jie-Chuen Li.
 
 ScreenShot
 ==
