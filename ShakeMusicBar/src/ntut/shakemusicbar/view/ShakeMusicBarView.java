@@ -1,8 +1,9 @@
-package ntut.shakemusicbar;
+package ntut.shakemusicbar.view;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ntut.shakemusicbar.demo.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -20,7 +21,7 @@ public class ShakeMusicBarView extends LinearLayout {
 	private int mColor;
 	private int mBackgroundDrawable = -1;
 	private float mVelocity = 118.0f;
-	interface OnInitFinishedListener{
+	public interface OnInitFinishedListener{
 		void onInitFinished();
 	}
 	public ShakeMusicBarView(Context context, AttributeSet attrs) {

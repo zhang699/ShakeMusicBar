@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="ColorMode" />
 
-    <ntut.shakemusicbar.ShakeMusicBarView
+    <ntut.shakemusicbar.view.ShakeMusicBarView
         android:id="@+id/shake_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -31,7 +31,7 @@
         custom:barCount="3"
         custom:barInvsInPx="3" />
 
-     <ntut.shakemusicbar.ShakeMusicBarView
+     <ntut.shakemusicbar.view.ShakeMusicBarView
         android:id="@+id/shake_small_view"
         android:layout_width="20dp"
         android:layout_height="20dp"

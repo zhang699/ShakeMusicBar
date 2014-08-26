@@ -1,4 +1,4 @@
-package ntut.shakemusicbar;
+package ntut.shakemusicbar.view;
 
 import java.util.Arrays;
 import java.util.Collections;
