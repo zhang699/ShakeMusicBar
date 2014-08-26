@@ -90,7 +90,7 @@ public class IndividualMusicShakeBar extends View {
 		}, ANIMATIOR_DURATION);
 	}
 	
-	public void stopToTranslateY(float yInPX){
+	public void stopToHeight(float yInPX){
 		final int height = (int) (getHeight() - yInPX);
 		mViewAnimator.translationY(height);
 	}

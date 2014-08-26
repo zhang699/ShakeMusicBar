@@ -90,10 +90,10 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
 				mSwitchBtn.setText("Stop");
 			}else{
 				mBarView.shake(false);
-				mBarView.stopToTranslateY(5.0f);
+				mBarView.stopToHeight(5.0f);
 				
 				mSmallBarView.shake(false);
-				mSmallBarView.stopToTranslateY(5.0f);
+				mSmallBarView.stopToHeight(5.0f);
 				mSwitchBtn.setText(TEXT_START);
 			}
 		}else if(v.getId() == R.id.btn_mode_switch){

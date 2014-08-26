@@ -53,9 +53,17 @@ public class ShakeMusicBarView extends LinearLayout {
 		mOnListener = initListener;
 	}
 	
+	/**
+	 * Initialize using default color, intervals between bars, the number of bars
+	 */
 	public void init(){
 		init(mColor, mInvBetweenBars, mBarCount);
 	}
+	/** Initialize using specified color, intervals between bars, the number of bars
+	 * @param color the color value
+	 * @param invBetweenBars the pixel interval between bars
+	 * @param barCount number of bars
+	 */
 	public void init(final int color, final int invBetweenBars, final int barCount){
 		this.post(new Runnable() {
 
@@ -92,12 +100,18 @@ public class ShakeMusicBarView extends LinearLayout {
 	
 	}
 
+	/** Start or Stop shaking 
+	 * @param isShake This true indicated start to shake, false is stop shaking.
+	 */
 	public void shake(boolean isShake){
 		for(IndividualMusicShakeBar bar : mBars){
 			bar.shake(isShake);
 		}
 	}
 	
+	/** Set the specified velocity to all of bars inside this view.
+	 * @param velocity the moving pixel distance per second 
+	 */
 	public void setVelocity(int velocity){
 		mVelocity = velocity;
 		for(IndividualMusicShakeBar bar : mBars){
@@ -105,9 +119,12 @@ public class ShakeMusicBarView extends LinearLayout {
 		}
 	}
 	
-	public void stopToTranslateY(float yInPX){
+	/** After stop shaking, this method make all of bars still to specified pixel height. 
+	 * @param yInPX the height stopped to.
+	 */
+	public void stopToHeight(float yInPX){
 		for(IndividualMusicShakeBar bar : mBars){
-			bar.stopToTranslateY(yInPX);
+			bar.stopToHeight(yInPX);
 		}
 	}
 	private LayoutParams createLinearLayoutParams(int widthOfBar) {
@@ -136,11 +153,17 @@ public class ShakeMusicBarView extends LinearLayout {
 		return mColor;
 	}
 
+	/** Change the number of bars inside this view
+	 * @param the number of bars
+	 */
 	public void changeBarCount(int barCount) {
 		removeAllViews();
 		init(mColor, mInvBetweenBars, barCount);
 	}
 
+	/** Change color of the bar
+	 * @param color color value
+	 */
 	public void changeColor(int color) {
 		removeAllViews();
 		mBackgroundDrawable = -1;
@@ -152,6 +175,9 @@ public class ShakeMusicBarView extends LinearLayout {
 		super.removeAllViews();
 	}
 	
+	/** change the interval between bars.
+	 * @param inv
+	 */
 	public void changeInvBetweenBars(int inv) {
 		removeAllViews();
 		init(mColor, inv, mBarCount);
