@@ -12,53 +12,57 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
 public class ShakeMusicBarView extends LinearLayout {
+	private static final float VELOCITY_DEFAULT = 118.0f;
+	
 	private List<IndividualMusicShakeBar> mBars = new ArrayList<IndividualMusicShakeBar>();
 	private Handler mHandler;
 	private OnInitFinishedListener mOnListener;
 	
-	private int mInvBetweenBars;
+	private int mIntervalsBetweenBars;
 	private int mBarCount;
 	private int mColor;
 	private int mBackgroundDrawable = -1;
-	private float mVelocity = 118.0f;
+	private float mVelocity = VELOCITY_DEFAULT;
+
+	private int mCalculatedBarWidth;
+	
 	public interface OnInitFinishedListener{
 		void onInitFinished();
 	}
+	
 	public ShakeMusicBarView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 		mHandler = new Handler();
 		
-		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ShakeMusicBarView);
-		mBarCount =a.getInteger(R.styleable.ShakeMusicBarView_barCount, 0);
-		mInvBetweenBars = a.getInteger(R.styleable.ShakeMusicBarView_barInvsInPx, 0);
-		mColor = a.getColor(R.styleable.ShakeMusicBarView_barColor, 0);
+		setupBarViewConfiguration(context, attrs);
+		setupDefaultConfigurationIfNeed();
+	}
+
+	private void setupBarViewConfiguration(Context context, AttributeSet attrs) {
+		TypedArray barViewAttributes = context.obtainStyledAttributes(attrs, R.styleable.ShakeMusicBarView);
+		
+		mBarCount =barViewAttributes.getInteger(R.styleable.ShakeMusicBarView_barCount, 0);
+		mIntervalsBetweenBars = barViewAttributes.getInteger(R.styleable.ShakeMusicBarView_barInvsInPx, 0);
+		mColor = barViewAttributes.getColor(R.styleable.ShakeMusicBarView_barColor, 0);
+		
+		barViewAttributes.recycle();
+	}
+	
+	private void setupDefaultConfigurationIfNeed() {
 		if(mBarCount == 0){
 			mBarCount = 1;
 		}
 		if(mColor == 0){
 			mColor = Color.GREEN;
 		}
-		
-		a.recycle();
-	}
-	
-	private void createBars(int count){
-		mBars.clear();
-		for(int i =0;i<count;i++){
-			mBars.add(new IndividualMusicShakeBar(getContext(), mHandler));
-		}
-	}
-
-	public void setOnInitFinishedListener(OnInitFinishedListener initListener){
-		mOnListener = initListener;
 	}
 	
 	/**
 	 * Initialize using default color, intervals between bars, the number of bars
 	 */
 	public void init(){
-		init(mColor, mInvBetweenBars, mBarCount);
+		init(mColor, mIntervalsBetweenBars, mBarCount);
 	}
 	/** Initialize using specified color, intervals between bars, the number of bars
 	 * @param color the color value
@@ -66,39 +70,81 @@ public class ShakeMusicBarView extends LinearLayout {
 	 * @param barCount number of bars
 	 */
 	public void init(final int color, final int invBetweenBars, final int barCount){
+		mIntervalsBetweenBars = invBetweenBars;
+		mBarCount = barCount;
+		mColor = color;
+		
+		runShakingTask();
+	}
+
+	private void runShakingTask() {
 		this.post(new Runnable() {
 
 			@Override
 			public void run() {
-				mInvBetweenBars = invBetweenBars;
-				mBarCount = barCount;
-				mColor = color;
-				
-				float width = getWidth();
-				int invCount = barCount - 1;
-				int widthOfBar = Math.round(((width-invCount*invBetweenBars)/ (float)barCount));
-				createBars(barCount);
-				
-				for(int i=0;i<mBars.size();i++){
-					IndividualMusicShakeBar currentBar = mBars.get(i);
-					LayoutParams mBarLayoutParams = createLinearLayoutParams(widthOfBar);
-					mBarLayoutParams.setMargins(0, 0, i < (mBars.size()-1) ? invBetweenBars: 0, 0);
-					addView(currentBar, mBarLayoutParams);
-					currentBar.init(color);
-					currentBar.setVelocity(mVelocity);
-				}
+				initIndividualBars();
 				
 				shake(true);
 				
-				if(mBackgroundDrawable >= 0){
-					applyBarDrawable(mBackgroundDrawable);
-				}
-				if(mOnListener != null){
-					mOnListener.onInitFinished();
-				}
+				setupBarDrawable();
+				setupInitCallback();
 			}
 		});
+	}
 	
+	private void initIndividualBars() {
+		createIndidualBars(mBarCount);
+		
+		float barViewWidth = getWidth();
+		int numberOfIntervalsBetweenBars = mBarCount - 1;
+		
+		float indidvualBarWidth = (barViewWidth-numberOfIntervalsBetweenBars*mIntervalsBetweenBars);
+		mCalculatedBarWidth = Math.round((indidvualBarWidth/ (float)mBarCount));
+		
+		for(int i=0;i<mBars.size();i++){
+			IndividualMusicShakeBar currentBar = mBars.get(i);
+		
+			initBarViewPropertyAndAddToParent(i, currentBar);
+
+			currentBar.init(mColor, mVelocity);
+		}
+	}
+
+	private void createIndidualBars(int count){
+		mBars.clear();
+		for(int i =0;i<count;i++){
+			mBars.add(new IndividualMusicShakeBar(getContext(), mHandler));
+		}
+	}
+
+	private void initBarViewPropertyAndAddToParent(int numberOfBar, IndividualMusicShakeBar currentBar) {
+		LayoutParams mBarLayoutParams = createLinearLayoutParams(mCalculatedBarWidth);
+		int actualBarIntervals = calculateActualBarInterval(numberOfBar);
+		
+		mBarLayoutParams.setMargins(0, 0, actualBarIntervals , 0);
+		addView(currentBar, mBarLayoutParams);
+	}
+
+	private int calculateActualBarInterval(int numberOfBar) {
+		boolean isLastBar = numberOfBar < (mBars.size()-1);
+		int actualBarIntervals = isLastBar ? mIntervalsBetweenBars: 0;
+		return actualBarIntervals;
+	}
+	
+	private void setupInitCallback() {
+		if(mOnListener != null){
+			mOnListener.onInitFinished();
+		}
+	}
+
+	private void setupBarDrawable() {
+		if(mBackgroundDrawable >= 0){
+			applyBarDrawable(mBackgroundDrawable);
+		}
+	}
+	
+	public void setOnInitFinishedListener(OnInitFinishedListener initListener){
+		mOnListener = initListener;
 	}
 
 	/** Start or Stop shaking 
@@ -141,7 +187,7 @@ public class ShakeMusicBarView extends LinearLayout {
 	}
 
 	public int getInvBetweenBars() {
-		return mInvBetweenBars;
+		return mIntervalsBetweenBars;
 	}
 
 
@@ -159,7 +205,7 @@ public class ShakeMusicBarView extends LinearLayout {
 	 */
 	public void changeBarCount(int barCount) {
 		removeAllViews();
-		init(mColor, mInvBetweenBars, barCount);
+		init(mColor, mIntervalsBetweenBars, barCount);
 	}
 
 	/** Change color of the bar
@@ -168,7 +214,7 @@ public class ShakeMusicBarView extends LinearLayout {
 	public void changeColor(int color) {
 		removeAllViews();
 		mBackgroundDrawable = -1;
-		init(color, mInvBetweenBars, mBarCount);
+		init(color, mIntervalsBetweenBars, mBarCount);
 	}
 
 	public void removeAllViews() {
@@ -189,12 +235,11 @@ public class ShakeMusicBarView extends LinearLayout {
 		mBackgroundDrawable = backgroundDrawable;
 		init();
 	}
+	
 	private void applyBarDrawable(int backgroundDrawable) {
 		for(IndividualMusicShakeBar bar : mBars){
 			bar.setBackgroundResource(backgroundDrawable);
 		}
-		
 	}
-	
 	
 }
