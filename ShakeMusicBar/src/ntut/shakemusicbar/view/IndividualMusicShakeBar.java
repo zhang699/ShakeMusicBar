@@ -19,7 +19,9 @@ public class IndividualMusicShakeBar extends View {
 	private boolean mIsShake = false;
 	private List<Float> mShuffleList;
 	private float mPrevMulti;
-	private float mVelocity;// v = aniY/duration, duration = aniY/v, duration is in seconds 
+	
+	// mVelocity = height/duration => duration = height/velocity, and the unit of duration is in second 
+	private float mVelocity;
 
 	public IndividualMusicShakeBar(Context context, Handler handler) {
 		super(context);
