@@ -1,7 +1,7 @@
 package ntut.shakemusicbar.demo;
 
-import ntut.shakemusicbar.view.ShakeMusicBarView;
-import ntut.shakemusicbar.view.ShakeMusicBarView.OnInitFinishedListener;
+import ntut.shakemusicbar.library.ShakeMusicBarView;
+import ntut.shakemusicbar.library.ShakeMusicBarView.OnInitFinishedListener;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.SparseArray;

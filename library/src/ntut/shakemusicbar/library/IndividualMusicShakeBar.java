@@ -1,4 +1,4 @@
-package ntut.shakemusicbar.view;
+package ntut.shakemusicbar.library;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,7 +28,6 @@ public class IndividualMusicShakeBar extends View {
 		mAnimationHandler = handler;
 		mViewAnimator = animate();
 		mViewAnimator.setDuration(DEFAULT_ANIMATIOR_SHAKING_DURATION);
-		
 		mShuffleList = Arrays.asList(DEFAULT_MULTIPLIER_ARR);
 	}
 	
@@ -61,7 +60,7 @@ public class IndividualMusicShakeBar extends View {
 				IndividualMusicShakeBar.this.runShaking(this);
 			}
 
-		}, DEFAULT_ANIMATIOR_SHAKING_DURATION);
+		}, 0);
 	}
 
 	private void runShaking(Runnable shakingTask) {

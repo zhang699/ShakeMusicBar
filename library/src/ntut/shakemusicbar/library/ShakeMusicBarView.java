@@ -1,9 +1,8 @@
-package ntut.shakemusicbar.view;
+package ntut.shakemusicbar.library;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ntut.shakemusicbar.demo.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
