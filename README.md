@@ -47,7 +47,7 @@ mBarView.shake(false);
 mBarView.stopToHeight(5.0f); //5 pixel height from the base.
 ```
 
-change property dynamically.
+change `barVelocity`, `barColor` `barCount` property dynamically.
 ```java
 mBarView.setVelocity(5); // In pixels
 mBarView.changeColor(0xffff0000); // set background color of bar to red
