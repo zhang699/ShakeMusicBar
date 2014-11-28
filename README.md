@@ -3,9 +3,9 @@ ShakeMusicBar
 
 A ShakeMusicBarView which imitates from Google Play Music Android APP is used to indicate the music is playing or stopped. 
 
-ScreenShot
+Demo
 ==
-![ScreenShot](https://raw.github.com/zhang699/ShakeMusicBar/master/image/preview2.PNG)
+<img src="https://raw.github.com/zhang699/ShakeMusicBar/master/image/preview2.PNG" width="320" alt="Screenshot"/>
 
 
 Usage
@@ -23,7 +23,7 @@ Use it in yout layout.xml.
     custom:barInvsInPx="3" />
 ```
 
-Get instance and call `init1 method to start to shake
+Get instance and call `init` method to start to shake
 ```java
 mBarView = (ShakeMusicBarView) findViewById(R.id.shake_view);
 	
