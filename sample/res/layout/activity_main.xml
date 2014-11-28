@@ -29,6 +29,7 @@
         android:orientation="horizontal"
         custom:barColor="@android:color/darker_gray"
         custom:barCount="3"
+        custom:barVelocity="150"
         custom:barInvsInPx="3" />
 
      <ntut.shakemusicbar.library.ShakeMusicBarView
@@ -41,6 +42,7 @@
         android:layout_marginTop="10dp"
         custom:barColor="@android:color/holo_orange_light"
         custom:barCount="3"
+        custom:barVelocity="150"
         custom:barInvsInPx="3" />
     
        

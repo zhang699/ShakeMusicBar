@@ -44,6 +44,7 @@ public class ShakeMusicBarView extends LinearLayout {
 		mBarCount =barViewAttributes.getInteger(R.styleable.ShakeMusicBarView_barCount, 0);
 		mIntervalsBetweenBars = barViewAttributes.getInteger(R.styleable.ShakeMusicBarView_barInvsInPx, 0);
 		mColor = barViewAttributes.getColor(R.styleable.ShakeMusicBarView_barColor, 0);
+		mVelocity = barViewAttributes.getInteger(R.styleable.ShakeMusicBarView_barVelocity, (int)VELOCITY_DEFAULT);
 		
 		barViewAttributes.recycle();
 	}
