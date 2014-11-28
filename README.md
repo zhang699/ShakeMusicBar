@@ -39,7 +39,7 @@ mBarView.setOnInitFinishedListener(new OnInitFinishedListener() {
 		
 mBarView.init();
 ```
-while you want to stop shaking and then stop to specified hight
+While you want to stop shaking and then stop to specified hight
 call `shake` and `stopToHeight` methods.
 
 ```java
@@ -47,14 +47,14 @@ mBarView.shake(false);
 mBarView.stopToHeight(5.0f); //5 pixel height from the base.
 ```
 
-change `barVelocity`, `barColor` `barCount` property dynamically.
+Change `barVelocity`, `barColor` `barCount` property dynamically.
 ```java
 mBarView.setVelocity(5); // In pixels
 mBarView.changeColor(0xffff0000); // set background color of bar to red
 mBarView.changeBarCount(3); // change number of bars reside in the barview to 3
 ```
 
-you also can specifiy drawable as bar's background.
+You also can specifiy drawable as bar's background.
 ```java
 mBarView.changeDrawable(R.drawable.rectangle_background);
 ```
