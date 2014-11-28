@@ -20,6 +20,7 @@ Use it in yout layout.xml.
     android:orientation="horizontal"
     custom:barColor="@android:color/darker_gray"
     custom:barCount="3"
+    custom:barVelocity="150"
     custom:barInvsInPx="3" />
 ```
 
