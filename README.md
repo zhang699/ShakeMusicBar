@@ -61,7 +61,7 @@ mBarView.changeDrawable(R.drawable.rectangle_background);
 
 Thanks
 ==
-I am very grateful to Jie-Chuen Li for giving me this opportunity to contribute this project for community
+I am very grateful to Jie-Chuen Li for giving me this opportunity to contribute this project.
 
 
 License
