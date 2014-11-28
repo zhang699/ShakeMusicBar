@@ -23,7 +23,7 @@ Use it in yout layout.xml.
     custom:barInvsInPx="3" />
 ```
 
-Get instance and call init() to start to shake
+Get instance and call `init1 method to start to shake
 ```java
 mBarView = (ShakeMusicBarView) findViewById(R.id.shake_view);
 	
@@ -39,17 +39,18 @@ mBarView.setOnInitFinishedListener(new OnInitFinishedListener() {
 mBarView.init();
 ```
 while you want to stop shaking and then stop to specified hight.
+call `shake` and `stopToHeight` methods
 
 ```java
 mBarView.shake(false);
-mBarView.stopToHeight(5.0f);
+mBarView.stopToHeight(5.0f); //In pixels
 ```
 
 change property dynamically.
 ```java
 mBarView.setVelocity(5); // In pixels
-mBarView.changeColor(0xffff0000) // color in red
-mBarView.changeBarCount(3) // change number of bars reside in the barview to 3
+mBarView.changeColor(0xffff0000); // color in red
+mBarView.changeBarCount(3); // change number of bars reside in the barview to 3
 ```
 
 Thanks
