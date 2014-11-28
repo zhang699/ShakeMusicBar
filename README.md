@@ -40,11 +40,11 @@ mBarView.setOnInitFinishedListener(new OnInitFinishedListener() {
 mBarView.init();
 ```
 While you want to stop shaking and then stop to specified hight
-call `shake` and `stopToHeight` methods.
+, you can use `shake` and `stopToHeight` methods.
 
 ```java
 mBarView.shake(false);
-mBarView.stopToHeight(5.0f); //5 pixel height from the base.
+mBarView.stopToHeight(5.0f); //stop to 5 pixel height from the base.
 ```
 
 Change `barVelocity`, `barColor` `barCount` property dynamically.
