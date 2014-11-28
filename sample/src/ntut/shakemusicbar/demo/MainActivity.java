@@ -69,6 +69,7 @@ public class MainActivity extends Activity implements OnClickListener, OnSeekBar
 		
 		mSmallBarView = (ShakeMusicBarView) findViewById(R.id.shake_small_view);
 		mSmallBarView.init();
+
 	}
 	
 
