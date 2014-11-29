@@ -1,7 +1,7 @@
 #ShakeMusicBar
 
 
-A ShakeMusicBarView is music indicator, which imitates from Google Play Music Android APP, used to indicate the music is playing or stopped. 
+A ShakeMusicBarView is music indicator, which imitates from Google Play Music android application, used to indicate the music is playing or stopped. 
 
 #Demo
 
@@ -10,7 +10,7 @@ A ShakeMusicBarView is music indicator, which imitates from Google Play Music An
 
 #Usage
 
-Use it in yout layout.xml.
+Use it in your layout.xml.
 ```xml
 <ntut.shakemusicbar.library.ShakeMusicBarView
     android:id="@+id/shake_view"
