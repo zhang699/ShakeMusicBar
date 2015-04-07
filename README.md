@@ -1,7 +1,9 @@
-#ShakeMusicBar
+#ShakeMusicBar [![Build Status](https://travis-ci.org/zhang699/ShakeMusicBar.png?branch=master)](https://travis-ci.org/zhang699/ShakeMusicBar)
 
 
 A ShakeMusicBarView is music indicator, which imitates from Google Play Music android application, used to indicate the music is playing or stopped. 
+
+
 
 #Demo
 
